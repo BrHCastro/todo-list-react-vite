@@ -16,7 +16,7 @@
 - [x] Em todas as tarefas, é mostrado o momento em que a tarefa foi criada/concluída
 - [x] Em toda ação do usuário, é disparado um toast para retorno visual
 
-Desenvolvido com: 
+Desenvolvido com:
 
 - [Vite](https://vitejs.dev/) v2.9.9
 - [ReactJS](https://pt-br.reactjs.org/) v18
@@ -32,5 +32,5 @@ Ferramentas adicionadas:
 
 ---
 
-Desenvilvido com :heart: por [@BrHCastro](https://github.com/brhcastro).
+Desenvilvido com :heart: por [@BrHCastro](https://www.linkedin.com/in/brhcastro/).
 Licença: [MIT](https://opensource.org/licenses/MIT).
