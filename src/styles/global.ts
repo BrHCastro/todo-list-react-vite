@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -85,6 +85,6 @@ export const GlobalStyle = createGlobalStyle`
     &.Toastify__toast--error, .Toastify__progress-bar--error {
       color: var(--danger);
       background-color: var(--danger);
-    }    
+    }
   }
 `;

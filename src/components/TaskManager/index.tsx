@@ -1,23 +1,19 @@
-import { useState } from "react";
+import { format, formatDistanceToNow } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+import { CaretRight } from 'phosphor-react';
+import { useState } from 'react';
 
-import { format, formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
-import { CaretRight } from "phosphor-react";
-
-import { useTasks } from "../../hooks/useTasks";
-
-import { Task } from "./Task";
-
-import clipboardImg from "../../assets/clipboard.svg";
-
-import { Container } from "./styles";
+import clipboardImg from '../../assets/clipboard.svg';
+import { useTask } from '../../hooks/useTasks';
+import { Container } from './styles';
+import { Task } from './Task';
 
 export function TaskManager() {
   const [showCompletedTasks, setShowCompletedTasks] = useState(true);
 
-  const { tasks } = useTasks();
+  const { tasks } = useTask();
 
-  const formattedTasks = tasks.map((task) => {
+  const formattedTasks = tasks.map(task => {
     return {
       ...task,
       publishedDateRelativeToNow: formatDistanceToNow(
@@ -25,20 +21,20 @@ export function TaskManager() {
         {
           locale: ptBR,
           addSuffix: true,
-        }
+        },
       ),
       publishedDateFormatted: format(
         new Date(new Date(task.updatedAt)),
         "d 'de' LLLL 'às' HH:mm'h'",
         {
           locale: ptBR,
-        }
+        },
       ),
     };
   });
 
-  const doneTasks = formattedTasks.filter((task) => task.done);
-  const undoneTasks = formattedTasks.filter((task) => !task.done);
+  const doneTasks = formattedTasks.filter(task => task.done);
+  const undoneTasks = formattedTasks.filter(task => !task.done);
 
   function handleToggleShowCompletedTasks() {
     setShowCompletedTasks(!showCompletedTasks);
@@ -65,12 +61,13 @@ export function TaskManager() {
       )}
 
       <div className="tasksOpened">
-        {undoneTasks.map((task) => (
+        {undoneTasks.map(task => (
           <Task key={task.id} task={task} />
         ))}
       </div>
       {doneTasks.length > 0 && (
         <button
+          type="button"
           className="toggleTasksCompleted"
           onClick={handleToggleShowCompletedTasks}
         >
@@ -79,7 +76,7 @@ export function TaskManager() {
       )}
 
       <div className="tasksCompleted">
-        {doneTasks.map((task) => (
+        {doneTasks.map(task => (
           <Task key={task.id} task={task} />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from 'styled-components';
 
 interface ITasks {
   toggleCompleteTasks: boolean;
@@ -64,13 +64,13 @@ export const Container = styled.div<ITasks>`
 
     svg {
       transition: transform 0.2s;
-      transform: ${(props) =>
-        props.toggleCompleteTasks ? "rotate(90deg)" : "rotate(0deg)"};
+      transform: ${props =>
+        props.toggleCompleteTasks ? 'rotate(90deg)' : 'rotate(0deg)'};
     }
   }
 
   .tasksCompleted {
     transition: opacity 0.2s;
-    opacity: ${(props) => (props.toggleCompleteTasks ? "1" : "0")};
+    opacity: ${props => (props.toggleCompleteTasks ? '1' : '0')};
   }
 `;

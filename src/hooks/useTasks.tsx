@@ -1,10 +1,15 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { toast } from 'react-toastify';
+import { v4 as uuid } from 'uuid';
 
-import { v4 as uuid } from "uuid";
-
-import { toast } from "react-toastify";
-import { toastOptions } from "../helpers/toatify";
-
+import { toastOptions } from '../helpers/toatify';
 
 interface ITask {
   id: string;
@@ -32,7 +37,8 @@ export function TaskProvider({ children }: ITaskProviderProps) {
 
   function createTask(newTask: string) {
     if (newTask.trim().length === 0) {
-      return toast.error("A tarefa não pode ser vazia!", toastOptions);
+      toast.error('A tarefa não pode ser vazia!', toastOptions);
+      return;
     }
 
     const task = {
@@ -44,47 +50,68 @@ export function TaskProvider({ children }: ITaskProviderProps) {
     };
 
     setTasks([task, ...tasks]);
-    localStorage.setItem("tasks", JSON.stringify([task, ...tasks]))
-    toast.success("Tarefa adicionada com sucesso!", toastOptions);
+    localStorage.setItem('tasks', JSON.stringify([task, ...tasks]));
+    toast.success('Tarefa adicionada com sucesso!', toastOptions);
   }
 
   function toggleTask(id: string) {
-    const task = tasks.find((task) => task.id === id);
+    const task = tasks.find(task => task.id === id);
 
     if (task) {
       task.done = !task.done;
       task.updatedAt = new Date().toISOString();
+
       setTasks([...tasks]);
-      localStorage.setItem("tasks", JSON.stringify([...tasks]));
-      toast.info(`Tarefa "${task.description.substring(0, 15)}..." foi ${task.done ? "concluída" : "re-adicionada"}!`, toastOptions);
+
+      localStorage.setItem('tasks', JSON.stringify([...tasks]));
+
+      toast.info(
+        `Tarefa "${task.description.substring(0, 15)}..." foi ${
+          task.done ? 'concluída' : 're-adicionada'
+        }!`,
+        toastOptions,
+      );
     }
   }
 
   function removeTask(id: string) {
-    const task = tasks.find((task) => task.id === id);
+    const task = tasks.find(task => task.id === id);
 
     if (task) {
-      setTasks(tasks.filter((task) => task.id !== id));
-      localStorage.setItem("tasks", JSON.stringify(tasks.filter((task) => task.id !== id)));
-      toast.warning(`Tarefa "${task.description.substring(0, 15)}..." deletada com sucesso!`, toastOptions);
+      const updatedTasks = tasks.filter(task => task.id !== id);
+
+      setTasks(updatedTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+
+      toast.warning(
+        `Tarefa "${task.description.substring(
+          0,
+          15,
+        )}..." deletada com sucesso!`,
+        toastOptions,
+      );
     }
   }
 
   useEffect(() => {
-    const tasks = localStorage.getItem("tasks");
+    const tasks = localStorage.getItem('tasks');
     if (tasks) {
       setTasks(JSON.parse(tasks));
     }
   }, []);
 
+  const taskMemo = useMemo(() => {
+    return {
+      tasks,
+      createTask,
+      removeTask,
+      toggleTask,
+    };
+  }, [tasks]);
+
   return (
-    <TaskContext.Provider value={{tasks, createTask, removeTask, toggleTask} }>
-      {children}
-    </TaskContext.Provider>
+    <TaskContext.Provider value={taskMemo}>{children}</TaskContext.Provider>
   );
 }
 
-export function useTasks() {
-  const context = useContext(TaskContext);
-  return context;
-}
+export const useTask = () => useContext(TaskContext);

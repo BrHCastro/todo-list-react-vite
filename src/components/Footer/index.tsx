@@ -1,6 +1,7 @@
-import { Container } from "./styles";
-import { author, version } from "../../../package.json";
-import { GitBranch, GithubLogo, LinkedinLogo } from "phosphor-react";
+import { GitBranch, GithubLogo, LinkedinLogo } from 'phosphor-react';
+
+import { author, version } from '../../../package.json';
+import { Container } from './styles';
 
 export function Footer() {
   return (
@@ -8,17 +9,30 @@ export function Footer() {
       <div className="author">
         <p>Versão: {version}</p>
         <p>
-          Desenvolvido com ❤️ por <a href={author.linkedin} target="_blank" rel="noreferrer">{author.name}</a>
+          Desenvolvido com ❤️ por{' '}
+          <a href={author.linkedin} target="_blank" rel="noreferrer">
+            {author.name}
+          </a>
         </p>
       </div>
       <div className="social">
-        <a title="LinkedIn" href={author.linkedin} target="_blank" rel="noreferrer"> 
+        <a
+          title="LinkedIn"
+          href={author.linkedin}
+          target="_blank"
+          rel="noreferrer"
+        >
           <LinkedinLogo size={32} weight="thin" />
         </a>
         <a title="GitHub" href={author.github} target="_blank" rel="noreferrer">
           <GithubLogo size={32} weight="thin" />
         </a>
-        <a title="Repositório" href={`${author.github}todo-list-react-vite`} target="_blank" rel="noreferrer"> 
+        <a
+          title="Repositório"
+          href={`${author.github}todo-list-react-vite`}
+          target="_blank"
+          rel="noreferrer"
+        >
           <GitBranch size={32} weight="thin" />
         </a>
       </div>

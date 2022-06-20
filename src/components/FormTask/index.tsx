@@ -1,15 +1,13 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { PlusCircle } from 'phosphor-react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
-import { PlusCircle } from "phosphor-react";
-
-import { useTasks } from '../../hooks/useTasks';
-
-import { Container } from "./styles";
+import { useTask } from '../../hooks/useTasks';
+import { Container } from './styles';
 
 export function FormTask() {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
 
-  const { createTask } = useTasks();
+  const { createTask } = useTask();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setDescription(e.target.value);
@@ -18,7 +16,7 @@ export function FormTask() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     createTask(description);
-    setDescription("");
+    setDescription('');
   }
 
   return (

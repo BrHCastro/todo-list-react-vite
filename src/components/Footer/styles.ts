@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.footer`
   max-width: 736px;
@@ -29,7 +29,7 @@ export const Container = styled.footer`
     font-size: 0.875rem;
 
     p:first-child::after {
-      content: "•";
+      content: '•';
       margin-left: 0.5rem;
       color: var(--blue);
     }
@@ -61,7 +61,7 @@ export const Container = styled.footer`
         text-align: center;
 
         &:first-child::after {
-          content: "";
+          content: '';
           margin-left: 0;
           width: 100%;
           height: 1px;

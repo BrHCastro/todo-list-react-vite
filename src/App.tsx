@@ -1,14 +1,12 @@
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-import { TaskProvider } from "./hooks/useTasks";
-
-import { TaskManager } from "./components/TaskManager";
-import { Header } from "./components/Header";
-import { FormTask } from "./components/FormTask";
-
-import { GlobalStyle } from "./styles/global";
-import { Footer } from "./components/Footer";
+import { Footer } from './components/Footer';
+import { FormTask } from './components/FormTask';
+import { Header } from './components/Header';
+import { TaskManager } from './components/TaskManager';
+import { TaskProvider } from './hooks/useTasks';
+import { GlobalStyle } from './styles/global';
 
 export interface ITask {
   id: string;

@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-interface TaskProps {
+interface ITaskProps {
   isDone: boolean;
 }
 
-export const Container = styled.div<TaskProps>`
+export const Container = styled.div<ITaskProps>`
   padding: 1rem;
-  border: ${(props) => (props.isDone ? "none" : "1px solid var(--border)")};
+  border: ${props => (props.isDone ? 'none' : '1px solid var(--border)')};
   border-radius: 0.5rem;
   background-color: var(--backgroundInput);
   &:not(:last-child) {
@@ -23,9 +23,9 @@ export const Container = styled.div<TaskProps>`
 
     span {
       font-size: 0.875rem;
-      color: ${(props) =>
-        props.isDone ? "var(--placeholderText)" : "var(--text)"};
-      text-decoration: ${(props) => (props.isDone ? "line-through" : "none")};
+      color: ${props =>
+        props.isDone ? 'var(--placeholderText)' : 'var(--text)'};
+      text-decoration: ${props => (props.isDone ? 'line-through' : 'none')};
       flex: 1;
     }
 
@@ -34,7 +34,7 @@ export const Container = styled.div<TaskProps>`
       height: 1rem;
 
       &.checkbox {
-        color: ${(props) => (props.isDone ? "var(--purple)" : "var(--blue)")};
+        color: ${props => (props.isDone ? 'var(--purple)' : 'var(--blue)')};
       }
 
       &.trash {
@@ -61,7 +61,7 @@ export const Container = styled.div<TaskProps>`
       font-size: 0.75rem;
 
       &::after {
-        content: "•";
+        content: '•';
         margin-inline: 0.3rem;
       }
     }
