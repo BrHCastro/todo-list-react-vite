@@ -39,6 +39,24 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+      margin-right: 10px;
+      background: var(--shape);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+      border: none;
+    }
+    ::-webkit-scrollbar-corner {
+      background: none;
+      border: none;
+    }
   }
 
   body, input, textarea, button {
